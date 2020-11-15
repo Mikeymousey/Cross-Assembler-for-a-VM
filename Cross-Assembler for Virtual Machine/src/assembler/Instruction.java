@@ -8,7 +8,6 @@ public class Instruction{
 		mnemonic = new Mnemonic();
 		operand = new Operand();
 	}
-	
 	public Mnemonic getMnemonic() {
 		return mnemonic;
 	}
@@ -21,6 +20,5 @@ public class Instruction{
 	public void setOperand(Operand operand) {
 		this.operand = operand;
 	}
-
 
 }

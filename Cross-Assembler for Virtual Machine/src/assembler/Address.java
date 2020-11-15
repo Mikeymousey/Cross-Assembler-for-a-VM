@@ -1,16 +1,24 @@
 package assembler;
 
 public class Address extends Operand{
-	private char[] address;
+	private Digit address;
+	
 	public Address() {
-		address = new char[4];
+		address = new Digit();
+	}
+	public void Inherent() {
+		
+	}
+	public void Immediate() {
+		
+	}
+	//Converting int to hex
+	public void Relative() {
+		
 	}
 	public void add() {
 		
 	}
-	//Converting int to hex
-	public void converter() {
-		
-	}
+	
 
 }
