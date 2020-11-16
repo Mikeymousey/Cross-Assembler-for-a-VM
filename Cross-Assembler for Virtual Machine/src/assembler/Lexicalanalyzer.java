@@ -187,8 +187,14 @@ public class Lexicalanalyzer
 	private void setLine(String instruction) {
 		lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = instruction;
 		lineStatements[currPos.getLine()].getInstruction().getMnemonic().setOpcode(symbolTable.getSymbol(lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier));//assigns the correct hex value to instruction
-		System.out.println("Line "+currPos.getLine()+". Mnemonic identifier: "+lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier);
-		System.out.println("Line "+currPos.getLine()+". Mnemonic opcode: "+Integer.toString(lineStatements[currPos.getLine()].getInstruction().getMnemonic().getOpcode(), 16));
+		//System.out.println("Line "+currPos.getLine()+". Mnemonic identifier: "+lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier);
+		//System.out.println("Line "+currPos.getLine()+". Mnemonic opcode: "+Integer.toString(lineStatements[currPos.getLine()].getInstruction().getMnemonic().getOpcode(), 16));
+	}
+	
+	public void outOpcodes() {
+		for (int i = 0; i < numberOfLines; i++) {
+			System.out.println(Integer.toString(lineStatements[i].getInstruction().getMnemonic().getOpcode(), 16));
+		}
 	}
 	
 }
