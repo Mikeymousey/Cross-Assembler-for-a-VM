@@ -1,7 +1,9 @@
 package assembler;
 
 public class SymbolTable {
-	Node[] table = new Node[25];
+	int numOfIns=25;// added a variable for adding more instruction easier later
+	
+	Node[] table = new Node[numOfIns];
 	public SymbolTable() {
 		table[0] = new Node("halt", 0);
 		table[1] = new Node("pop", 1);
@@ -34,7 +36,7 @@ public class SymbolTable {
 		linestatement.getInstruction().getMnemonic().setOpcode(getSymbol(linestatement.getInstruction().getMnemonic().identifier));
 	}
 	public int getSymbol(String str) {
-		for (int i = 0; i<11; i++)
+		for (int i = 0; i<numOfIns; i++)
 			if (str == table[i].getNodeIdentifier()) {
 				return table[i].getNodeHex();
 			}
