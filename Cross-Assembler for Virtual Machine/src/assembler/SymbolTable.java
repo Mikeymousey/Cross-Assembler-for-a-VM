@@ -32,7 +32,7 @@ public class SymbolTable {
 		table[24] = new Node("tge", 31);
 		
 	}
-	public void convertToLst(Linestatement linestatement) {
+	public void convertOpCode(Linestatement linestatement) {
 		linestatement.getInstruction().getMnemonic().setOpcode(getSymbol(linestatement.getInstruction().getMnemonic().identifier));
 	}
 	public int getSymbol(String str) {
@@ -41,6 +41,15 @@ public class SymbolTable {
 				return table[i].getNodeHex();
 			}
 		return -1;//incorrect identifier
+	}
+	
+	public String getIdentifier(int opCode) {
+		for (int i = 0; i < numOfIns; i++) {
+			if(opCode == table[i].getNodeHex()) {
+				return table[i].getNodeIdentifier();
+			}
+		} 
+		return "no match found";
 	}
 	
 		
