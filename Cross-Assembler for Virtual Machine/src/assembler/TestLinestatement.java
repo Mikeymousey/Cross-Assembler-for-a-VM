@@ -6,10 +6,11 @@ public class TestLinestatement {
 
         Linestatement l1 = new Linestatement();
 
-
+        SymbolTable st = new SymbolTable();
+        st.BuildTable();
         Mnemonic m1 = new Mnemonic();
         m1.setIdentifier("halt");
-        m1.setOpcode(0);
+        
 
         Instruction i1 = new Instruction();
         i1.setMnemonic(m1);
