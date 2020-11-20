@@ -1,10 +1,11 @@
-package Tests;
+package assembler;
 
 /* aunit.java - AUnit
 //
 // Copyright (C) 1996-2020 by Michel de Champlain
 //
 */
+
 import java.io.*;
 import java.util.*;
 
@@ -18,7 +19,7 @@ class Test {
 }
 
 public class aunit {
-    static Vector<Test> failedTests = new Vector<Test>();
+    static Vector failedTests = new Vector();
 
     public static void main(String[] args) throws IOException {
         String line;
@@ -56,7 +57,7 @@ public class aunit {
             System.out.println("OK");
         } else {
             System.out.println("\nFailed Tests:");
-            for (Enumeration<Test> e = failedTests.elements(); e.hasMoreElements();) {
+            for (Enumeration e = failedTests.elements(); e.hasMoreElements();) {
                 Test t = (Test)e.nextElement();
                 System.out.println("- "+ t.name);
             }
