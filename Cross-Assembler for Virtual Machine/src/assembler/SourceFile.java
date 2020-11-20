@@ -32,9 +32,9 @@ public class SourceFile {
 		PrintLst(aUnit.asmFile);
 	}
 	public String PrintLst(Linestatement[] lstFile) {
-		String str = "";
+		String str = String.format("%-5s%-6s%-15s%-15s%-20s%-15s%n", "Line", "Addr", "Machine Code", "Label","Assembly Code", "Comments");
 		for (int i = 0;  i < lstFile.length; i++) 
-			str += String.format("%-3d%6s%7s%25s%n", i+1, "0"+lstFile[i].getInstruction().getMnemonic().getOpcode(), lstFile[i].getInstruction().getMnemonic().identifier, lstFile[i].getInstruction().getOperand().toString());
+			str += String.format("%-5d%04X  %02X\t    %25s%n", i+1, lstFile[i].getInstruction().getAddress(),lstFile[i].getInstruction().getMnemonic().getOpcode(), lstFile[i].getInstruction().getMnemonic().identifier, lstFile[i].getInstruction().getOperand().toString());
 		return str;
 	}
 	public void GenerateLstFile() throws IOException {

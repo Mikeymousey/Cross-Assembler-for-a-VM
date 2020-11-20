@@ -2,7 +2,7 @@ package assembler;
 
 public class Mnemonic{
 	public String identifier;
-	public String opcode;
+	public int opcode;
 	public Mnemonic() {
 		
 	}
@@ -12,14 +12,14 @@ public class Mnemonic{
 	public void setIdentifier(String identifier) {
 		this.identifier = identifier;
 	}
-	public String getOpcode() {
+	public int getOpcode() {
 		return opcode;
 	}
 	public void setOpcode(String mnemonic) {
-		opcode = SymbolTable.getHexOpcode(mnemonic);
+		opcode = SymbolTable.getOpcode(mnemonic);
 	}
 	public void setIdentifications(String str) {
 		identifier = str;
-		opcode = SymbolTable.getHexOpcode(str);
+		opcode = SymbolTable.getOpcode(str);
 	}
 }

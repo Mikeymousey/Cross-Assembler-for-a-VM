@@ -17,78 +17,103 @@ public class Lexicalanalyzer
 
 //------------------------------------------------------------------------------ INHERENT ---------------------------------------------------------------------------------------//
 				case "halt":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("halt");
 					break;
 				case "pop":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("pop");
 					break;
 				case "dup":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("dup");
 					break;
 				case "exit":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("exit");
 					break;
 				case "ret":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("ret");
 					break;
 				case "not":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("not");
 					break;
 				case "and":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("and");
 					break;
 				case "or":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("or");
 					break;
 				case "xor":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("xor");
 					break;
 				case "neg":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("neg");
 					break;
 				case "inc":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("inc");
 					break;
 				case "dec":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("dec");
 					break;
 				case "add":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("add");
 					break;
 				case "sub":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("sub");
 					break;
 				case "mul":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("mul");
 					break;
 				case "div":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("div");
 					break;
 				case "rem":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("rem");
 					break;
 				case "shl":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("shl");
 					break;
 				case "shr":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("shr");
 					break;
 				case "teq":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("teq");
 					break;
 				case "tne":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tne");
 					break;
 				case "tlt":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tlt");
 					break;
 				case "tgt":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tgt");
 					break;
 				case "tle":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tle");
 					break;
 				case "tge":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tge");
 					break;
 //-------------------------------------------------------------------------------- INHERENT ---------------------------------------------------------------------------------------//
@@ -165,7 +190,13 @@ public class Lexicalanalyzer
 	}//end of Parse method
 	private void SetLine(String instruction) {
 		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().setIdentifications(instruction);
+		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setAddress(aUnit.address);
+		incAddress();
 		System.out.println("Line "+aUnit.currPos.getLine()+". Mnemonic identifier: "+aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().getIdentifier());
-		System.out.println("Line "+aUnit.currPos.getLine()+". Mnemonic opcode: "+ aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().getOpcode());
+		System.out.printf("Line "+aUnit.currPos.getLine()+". Machine Code: "+ "%02X",aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().getOpcode());
+		System.out.println("");
+	}
+	public void incAddress() {
+		aUnit.address += 1;
 	}
 }

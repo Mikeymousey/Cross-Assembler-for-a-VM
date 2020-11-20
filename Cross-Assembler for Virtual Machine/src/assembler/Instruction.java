@@ -3,7 +3,20 @@ package assembler;
 public class Instruction{
 	private Mnemonic mnemonic;
 	private Operand operand;
-
+	private int Size;
+	private int Address;
+	public int getSize() {
+		return Size;
+	}
+	public void setSize(int size) {
+		Size = size;
+	}
+	public int getAddress() {
+		return Address;
+	}
+	public void setAddress(int address) {
+		Address = address;
+	}
 	public Instruction() {
 		mnemonic = new Mnemonic();
 		operand = new Operand();
@@ -20,5 +33,4 @@ public class Instruction{
 	public void setOperand(Operand operand) {
 		this.operand = operand;
 	}
-
 }

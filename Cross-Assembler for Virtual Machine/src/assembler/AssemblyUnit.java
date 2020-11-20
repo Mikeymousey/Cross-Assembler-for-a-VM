@@ -8,10 +8,11 @@ public class AssemblyUnit {
 	private Lexicalanalyzer Lex;
 	public Linestatement [] asmFile; 
 	public String fileName;
-	
+	public int address;
 	public AssemblyUnit(String filename) throws IOException 
 	{
 		fileName = filename;
+		address = 0;
 		currPos = new Position(0, 0);
 		errep = new ErrorReporter();
 		new SymbolTable();
@@ -19,7 +20,6 @@ public class AssemblyUnit {
 		SourceFile sf = new SourceFile(this);
 		sf.GenerateLstFile();
 	}
-	
 	public void readFile(String s) throws IOException 
 	{
 		String str = s.trim();

@@ -14,11 +14,5 @@ public class Address extends Operand{
 	}
 	//Converting int to hex
 	public void Relative() {
-		
 	}
-	public void add() {
-		
-	}
-	
-
 }
