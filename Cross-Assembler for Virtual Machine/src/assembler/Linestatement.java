@@ -4,12 +4,10 @@ public class Linestatement {
 	private Label label;
 	private Instruction instruction;
 	private Comment comment;
-	private EOL eol;
 	public Linestatement () {
 		label = new Label();
 		instruction = new Instruction();
 		comment = new Comment();
-		eol = new EOL();
 	}
 	public Label getLabel() {
 		return label;
@@ -29,11 +27,4 @@ public class Linestatement {
 	public void setComment(Comment comment) {
 		this.comment = comment;
 	}
-	public EOL getEol() {
-		return eol;
-	}
-	public void setEol(EOL eol) {
-		this.eol = eol;
-	}
-
 }
