@@ -1,8 +1,8 @@
 package assembler;
 
 public class Position {
-	private int line;
-	private int character;
+	private int line = 0;
+	private int character = 0;
 	
 	public Position(int l, int c) {
 		line = l;

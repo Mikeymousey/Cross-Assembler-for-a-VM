@@ -2,18 +2,18 @@ package assembler;
 
 public class Node {
 	private String identifier;
-	private int machine;
+	private String machine;
 	
 	public Node(String s, int h) {
 		identifier = s;
-		machine = h;
+		machine = Integer.toString(h, 16);
 	}
 	
 	public String getNodeIdentifier() {
 		return identifier;
 	}
 	
-	public int getNodeHex() {
+	public String getNodeHex() {
 		return machine;
 	}
 }

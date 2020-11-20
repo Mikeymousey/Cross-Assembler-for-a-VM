@@ -7,5 +7,7 @@ public class Operand {
 	public Operand() {
 		
 	}
-
+	public String toString() {
+		return "This is the operand";
+	}
 }

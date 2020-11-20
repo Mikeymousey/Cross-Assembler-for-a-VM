@@ -1,200 +1,171 @@
 package assembler;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 public class Lexicalanalyzer 
 {
-	private int numberOfLines;
-	private Position currPos;
-	private ErrorReporter errep;
-	private SymbolTable symbolTable;
-	private int instruction = 0;
-	Linestatement[] lineStatements; //Instruction set
+	public AssemblyUnit aUnit;
 	//Constructor
-	public Lexicalanalyzer(int numOfLines) 
+	public Lexicalanalyzer(AssemblyUnit aUnit) 
 	{
-		symbolTable = new SymbolTable();
-		currPos = new Position(0, 0);
-		errep = new ErrorReporter();
-		lineStatements = new Linestatement[numOfLines];
-		numberOfLines = numOfLines;
-		lineStatements = new Linestatement[numOfLines]; //Creating array
-		for(int i = 0; i<lineStatements.length; i++) //Create instances
-			lineStatements[i] = new Linestatement();
+		this.aUnit = aUnit;
 	}
 	public void Parse(char[] linestatement) 
 	{
 		String token = new String(linestatement);		
 				switch(token) 
 				{
-		//---------------------------------------------------------------------- INSTRUCTION FORMAT ---------------------------------------------------------------------------------------//
+//---------------------------------------------------------------------------- INSTRUCTION FORMAT ---------------------------------------------------------------------------------------//
 
-			//---------------------------------------------------------------------- INHERENT ---------------------------------------------------------------------------------------//
-				case "add":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "add";
-					break;
-				case "addv":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "addv";
-					break;
-				case "and":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "and";
-					break;
-				case "br":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "br";
-					break;
-				case "brf":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "brf";
-					break;
-				case "call":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "call";
-					break;
-				case "dec":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "decv";
-					break;
-				case "div":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "div";
-					break;
-				case "dup":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "dup";
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().setOpcode(symbolTable.getSymbol(lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier));//assigns the correct hex value to instruction
-					System.out.println("Line "+currPos.getLine()+". Mnemonic identifier: "+lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier);
-					System.out.println("Line "+currPos.getLine()+". Mnemonic opcode: "+(lineStatements[currPos.getLine()].getInstruction().getMnemonic().getOpcode()));
-					break;
-				case "enter":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "enter";
-					break;
+//------------------------------------------------------------------------------ INHERENT ---------------------------------------------------------------------------------------//
 				case "halt":
-					//lineStatements[currPos.getLine()].setInstruction(new Inherent()); //creates type of instruction
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "halt";//Assigns identifier to instruction
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().setOpcode(symbolTable.getSymbol(lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier));//assigns the correct hex value to instruction
-					System.out.println("Line "+currPos.getLine()+". Mnemonic identifier: "+lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier);
-					System.out.println("Line "+currPos.getLine()+". Mnemonic opcode: "+(lineStatements[currPos.getLine()].getInstruction().getMnemonic().getOpcode()));
-					break;
-				case "inc":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "inc";
-					System.out.println("Line "+currPos.getLine()+". Mnemonic identifier: "+lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier);
-					break;
-				case "incv":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "incv";
-					System.out.println("Line "+currPos.getLine()+". Mnemonic identifier: "+lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier);
-					break;
-					//---------------------------------------------------------------------- OPCODES 2.0 ---------------------------------------------------------------------------------------//
-				case "ldc":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "ldc";
-					System.out.println("Line "+currPos.getLine()+". Mnemonic identifier: "+lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier);
-					break;
-				case "ldv":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "ldv";
-					break;
-				case "mul":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "mul";
-					break;
-				case "neg":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "neg";
-					break;
-				case "not":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "not";
-					System.out.println("This is the number being returned: "+symbolTable.getSymbol(lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier));
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().setOpcode(symbolTable.getSymbol(lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier));//assigns the correct hex value to instruction
-					System.out.println("Line "+currPos.getLine()+". Mnemonic identifier: "+lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier);
-					System.out.println("Line "+currPos.getLine()+". Mnemonic opcode: "+Integer.toString(lineStatements[currPos.getLine()].getInstruction().getMnemonic().getOpcode(), 16));
-					break;
-				case "or":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "or";
+					SetLine("halt");
 					break;
 				case "pop":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "pop";
-					System.out.println("Line "+currPos.getLine()+". Mnemonic identifier: "+lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier);
+					SetLine("pop");
 					break;
-				case "rem":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "rem";
+				case "dup":
+					SetLine("dup");
+					break;
+				case "exit":
+					SetLine("exit");
 					break;
 				case "ret":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "ret";
+					SetLine("ret");
 					break;
-				case "shl":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "shl";
+				case "not":
+					SetLine("not");
 					break;
-				case "shr":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "shr";
+				case "and":
+					SetLine("and");
 					break;
-				case "sub":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "sub";
-					break;
-				case "stv":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "stv";
-					break;
-				case "teq":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "teq";
-					break;
-				case "tge":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "tge";
-					break;
-				case "tgt":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "tgt";
-					break;
-				case "tle":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "tle";
-					break;
-				case "tlt":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "tlt";
-					break;
-				case "tne":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "tne";
-					break;
-				case "trap":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "trap";
+				case "or":
+					SetLine("or");
 					break;
 				case "xor":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "xor";
+					SetLine("xor");
 					break;
-			//---------------------------------------------------------------------- OPCODES 2.0 ---------------------------------------------------------------------------------------//
-				case "<i>":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "xor";
+				case "neg":
+					SetLine("neg");
 					break;
-				case "<u>":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "xor";
+				case "inc":
+					SetLine("inc");
 					break;
-				case "<v>":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "xor";
+				case "dec":
+					SetLine("dec");
 					break;
-				case "<n>":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "xor";
+				case "add":
+					SetLine("add");
 					break;
-				case "<a>":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "xor";
+				case "sub":
+					SetLine("sub");
+					break;
+				case "mul":
+					SetLine("mul");
+					break;
+				case "div":
+					SetLine("div");
+					break;
+				case "rem":
+					SetLine("rem");
+					break;
+				case "shl":
+					SetLine("shl");
+					break;
+				case "shr":
+					SetLine("shr");
+					break;
+				case "teq":
+					SetLine("teq");
+					break;
+				case "tne":
+					SetLine("tne");
+					break;
+				case "tlt":
+					SetLine("tlt");
+					break;
+				case "tgt":
+					SetLine("tgt");
+					break;
+				case "tle":
+					SetLine("tle");
+					break;
+				case "tge":
+					SetLine("tge");
+					break;
+//-------------------------------------------------------------------------------- INHERENT ---------------------------------------------------------------------------------------//
+//-------------------------------------------------------------------------------- IMMEDIATE ---------------------------------------------------------------------------------------//
+
+				case "br.i5":
+					SetLine("br.i5");
+					break;
+				case "brf.l5":
+					SetLine("brf.l5");
+					break;
+				case "enter.u5":
+					SetLine("enter.u5");
+					break;
+				case "ldc.i3":
+					SetLine("ldc.i3");
+					break;
+				case "addv.u3":
+					SetLine("addv.u3");
+					break;
+				case "ldv.u3":
+					SetLine("ldv.u3");
+					break;
+				case "stv.u3":
+					SetLine("stv.u3");
+					break;
+//-------------------------------------------------------------------------------- IMMEDIATE ---------------------------------------------------------------------------------------//
+//-------------------------------------------------------------------------------- RELATIVE ---------------------------------------------------------------------------------------//
+				case "addv.u8":
+					SetLine("addv.u8");
+					break;
+				case "ldv.u8":
+					SetLine("ldv.u8");
+					break;
+				case "stv.u8":
+					SetLine("stv.u8");
+					break;
+				case "incv.u8":
+					SetLine("incv.u8");
+					break;
+				case "enter.u8":
+					SetLine("enter.u8");
+					break;
+				case "lda.il6":
+					SetLine("lda.il6");
+					break;
+				case "ldc.i8":
+					SetLine("ldc.i8");
+					break;
+				case "ldc.il6":
+					SetLine("ldc.il6");
+					break;
+				case "ldc.i32":
+					SetLine("ldc.i32");
+					break;
+				case "br.i8":
+					SetLine("br.i8");
+					break;
+				case "br.il6":
+					SetLine("br.il6");
+					break;
+				case "brf.i8":
+					SetLine("brf.i8");
+					break;
+				case "call.il6":
+					SetLine("call.il6");
+					break;
+				case "trap":
+					SetLine("trap");
 					break;
 				default:
-					errep.reportError("unrecognized mnemonic", currPos);
+					aUnit.errep.reportError("unrecognized mnemonic", aUnit.currPos);
 				}//end of switch
 	}//end of Parse method
-	
-	
-	private boolean isSpace(int c) {
-		return (c == ' ' || c == '\t' || c == '\n');
+	private void SetLine(String instruction) {
+		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().setIdentifications(instruction);
+		System.out.println("Line "+aUnit.currPos.getLine()+". Mnemonic identifier: "+aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().getIdentifier());
+		System.out.println("Line "+aUnit.currPos.getLine()+". Mnemonic opcode: "+ aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().getOpcode());
 	}
-	
-	public void readLine(String s) throws IOException {
-		String str = s.trim();
-		int stringLength = str.length();
-		char[] wordBuf = new char[str.length()];
-		int inWordCnt = 0;
-		for(int i = 0; i < str.length()+1; i++) {
-			if(i<str.length()) {
-			if(!isSpace(str.charAt(i))) {//for anything that isn't whitespace put it in a word buffer
-				wordBuf[inWordCnt] = str.charAt(i);
-				inWordCnt++;
-			} else if (inWordCnt > 0){
-				Parse(wordBuf);//send any sequence of non white-space characters to the Parse function
-				inWordCnt = 0;
-			}
-			}else {
-				Parse(wordBuf);
-			}
-			currPos.incChar();
-		}
-		currPos.incLine();
-	}
-
 }
