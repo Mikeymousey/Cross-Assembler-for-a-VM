@@ -10,18 +10,15 @@ public class Lexicalanalyzer
 	private ErrorReporter errep;
 	private SymbolTable symbolTable;
 	private int instruction = 0;
-	Linestatement[] lineStatements; //Instruction set
+	AssemblyUnit assemblyUnit;
 	//Constructor
 	public Lexicalanalyzer(int numOfLines) 
 	{
 		symbolTable = new SymbolTable();
 		currPos = new Position(0, 0);
 		errep = new ErrorReporter();
-		lineStatements = new Linestatement[numOfLines];
+		assemblyUnit = new AssemblyUnit();
 		numberOfLines = numOfLines;
-		lineStatements = new Linestatement[numOfLines]; //Creating array
-		for(int i = 0; i<lineStatements.length; i++) //Create instances
-			lineStatements[i] = new Linestatement();
 	}
 	public void Parse(char[] linestatement) 
 	{
@@ -137,19 +134,19 @@ public class Lexicalanalyzer
 			//---------------------------------------------------------------------- OPCODES 2.0 ---------------------------------------------------------------------------------------//
 				//didn't change, not in use for now
 				case "<i>":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "xor";
+					assemblyUnit.getLineStmt(currPos.getLine()).getInstruction().getMnemonic().identifier = "xor";
 					break;
 				case "<u>":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "xor";
+					assemblyUnit.getLineStmt(currPos.getLine()).getInstruction().getMnemonic().identifier = "xor";
 					break;
 				case "<v>":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "xor";
+					assemblyUnit.getLineStmt(currPos.getLine()).getInstruction().getMnemonic().identifier = "xor";
 					break;
 				case "<n>":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "xor";
+					assemblyUnit.getLineStmt(currPos.getLine()).getInstruction().getMnemonic().identifier = "xor";
 					break;
 				case "<a>":
-					lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = "xor";
+					assemblyUnit.getLineStmt(currPos.getLine()).getInstruction().getMnemonic().identifier = "xor";
 					break;
 				default:
 					errep.reportError("unrecognized mnemonic", currPos);
@@ -163,7 +160,6 @@ public class Lexicalanalyzer
 	
 	public void readLine(String s) throws IOException {
 		String str = s.trim();
-		int stringLength = str.length();
 		char[] wordBuf = new char[str.length()];
 		int inWordCnt = 0;
 		for(int i = 0; i < str.length()+1; i++) {
@@ -185,10 +181,10 @@ public class Lexicalanalyzer
 	
 	//add a private method to simply the code above
 	private void setLine(String instruction) {
-		lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier = instruction;
-		lineStatements[currPos.getLine()].getInstruction().getMnemonic().setOpcode(symbolTable.getSymbol(lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier));//assigns the correct hex value to instruction
-		System.out.println("Line "+currPos.getLine()+". Mnemonic identifier: "+lineStatements[currPos.getLine()].getInstruction().getMnemonic().identifier);
-		System.out.println("Line "+currPos.getLine()+". Mnemonic opcode: "+Integer.toString(lineStatements[currPos.getLine()].getInstruction().getMnemonic().getOpcode(), 16));
+		assemblyUnit.getLineStmt(currPos.getLine()).getInstruction().getMnemonic().identifier = instruction;
+		assemblyUnit.getLineStmt(currPos.getLine()).getInstruction().getMnemonic().setOpcode(symbolTable.getSymbol(assemblyUnit.getLineStmt(currPos.getLine()).getInstruction().getMnemonic().identifier));//assigns the correct hex value to instruction
+		System.out.println("Line "+currPos.getLine()+". Mnemonic identifier: "+assemblyUnit.getLineStmt(currPos.getLine()).getInstruction().getMnemonic().identifier);
+		System.out.println("Line "+currPos.getLine()+". Mnemonic opcode: "+Integer.toString(assemblyUnit.getLineStmt(currPos.getLine()).getInstruction().getMnemonic().getOpcode(), 16));
 	}
 	
 }
