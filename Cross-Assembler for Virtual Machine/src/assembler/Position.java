@@ -24,4 +24,6 @@ public class Position {
 	public void incLine() {line++;}
 	
 	public void incChar() {character++;}
+	
+	public void clearChar() {character = 0;}
 }

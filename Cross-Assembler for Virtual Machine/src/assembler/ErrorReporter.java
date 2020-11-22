@@ -26,15 +26,6 @@ public class ErrorReporter {
 		}
 	}
 	
-	public boolean reportError(String m, Position p) {
-		if(currSize < maxSize) {
-			messageArray[currSize++] = new ErrorMessage(m, p);
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
 	public boolean reportError(String m, int l, int c) {
 		if(currSize < maxSize) {
 			messageArray[currSize++] = new ErrorMessage(m, new Position(l, c));
@@ -45,6 +36,7 @@ public class ErrorReporter {
 	}
 	
 	public void printErrors() {
+		System.out.println("Errors Reported: ");
 		for(int i = 0; i < currSize; i++) {
 			messageArray[i].printMessage();
 		}
