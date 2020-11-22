@@ -29,6 +29,9 @@ public class SourceFile {
 		br = new BufferedReader(new FileReader(aUnit.fileName));
 		while((str = br.readLine()) != null) 
 			aUnit.readFile(str);//Sending line to lexical analyzer for parsing
+		
+		
+		//maybe replace above?
 		PrintLst(aUnit.asmFile);
 	}
 	public String PrintLst(Linestatement[] lstFile) {

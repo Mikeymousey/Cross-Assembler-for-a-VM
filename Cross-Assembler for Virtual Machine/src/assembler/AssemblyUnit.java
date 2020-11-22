@@ -24,23 +24,40 @@ public class AssemblyUnit {
 	{
 		String str = s.trim();
 		char[] wordBuf = new char[str.length()];
+		//added here
+		String[] statement=new String[3];//used for parsing later, reason of 3: label mnemonic operand
+		int statementCnt=0;
+		//
 		int inWordCnt = 0;
 		for(int i = 0; i < str.length()+1; i++) 
 		{
+			
 			if(i<str.length()) {
-			if(!isSpace(str.charAt(i))) {//for anything that isn't whitespace put it in a word buffer
-				wordBuf[inWordCnt] = str.charAt(i);
-				inWordCnt++;
-			} else if (inWordCnt > 0){
-				Lex.Parse(wordBuf);//send any sequence of non white-space characters to the Parse function
-				inWordCnt = 0;
-			}
+				if((!isSpace(str.charAt(i)))&&(!isComment(str.charAt(i)))) {//for anything that isn't whitespace put it in a word buffer also not a comment
+					wordBuf[inWordCnt] = str.charAt(i);
+					inWordCnt++;
+				} else if (inWordCnt > 0){
+					//added here
+					
+					statement[statementCnt]=new String(wordBuf);
+					statementCnt++;
+					
+					wordBuf=new char[str.length()];
+					//original code here 
+					//Lex.Parse(wordBuf);//send any sequence of non white-space characters to the Parse function
+					inWordCnt = 0;
+				}
 			}else {
-				Lex.Parse(wordBuf);
+				if(inWordCnt!=0)
+					statement[statementCnt]=new String(wordBuf);
+				//original code here 
+				//Lex.Parse(wordBuf);
 			}
 			currPos.incChar();
 		}
 		currPos.incLine();
+		//Phaser code here
+		
 	}
 	private boolean isSpace(int c) 
 	{
@@ -52,6 +69,9 @@ public class AssemblyUnit {
 			asmFile[i] = new Linestatement();
 	}
 
+	private boolean isComment(char c) {
+		return (c==';');
+	}
 		
 	
 }
