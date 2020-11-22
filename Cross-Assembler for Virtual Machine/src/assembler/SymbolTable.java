@@ -1,7 +1,9 @@
 package assembler;
 
 public class SymbolTable {
-	static Node[] table = new Node[25];
+	private static int size=25;// size of the table, only need to modify it when adding more in the table
+	static Node[] table = new Node[size];
+	
 	public SymbolTable() {
 		BuildTable();
 	}
@@ -13,8 +15,8 @@ public class SymbolTable {
 	 */
 	public static int getOpcode(String mnemonic) //Returns Opcode
 	{
-		for (int i = 0; i<25; i++)
-			if (mnemonic == table[i].getNodeIdentifier()) {
+		for (int i = 0; i<size; i++)
+			if (mnemonic.equals(table[i].getNodeIdentifier())) {//replaced == with equal because it might have not expected result 
 				return table[i].getNodeHex();
 			}
 		return -1;//incorrect identifier
@@ -47,6 +49,14 @@ public class SymbolTable {
 		table[22] = new Node("tgt", 0x1D);
 		table[23] = new Node("tle", 0x1E);
 		table[24] = new Node("tge", 0x1F);
+	}
+	
+	public static boolean isSymbol(String s) {// check something whether it is in the table or not
+		for(int i=0;i<size;i++) {
+			if(s.equals(table[i].getNodeIdentifier()))
+				return true;
+		}
+		return false;
 	}
 	
 
