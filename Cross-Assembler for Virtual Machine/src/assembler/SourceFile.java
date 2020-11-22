@@ -10,8 +10,10 @@ public class SourceFile {
 	private String filePrefix;
 	private String fileSuffix;
 	private AssemblyUnit aUnit;
-	public SourceFile(AssemblyUnit aunit) throws IOException {
+	private Parser parser;
+	public SourceFile(AssemblyUnit aunit, Parser parser) throws IOException {
 		aUnit = aunit;
+		this.parser = parser;
 		ProcessFile();
 	}
 	public void ProcessFile() throws IOException {
@@ -28,13 +30,15 @@ public class SourceFile {
 		aUnit.createArray();
 		br = new BufferedReader(new FileReader(aUnit.fileName));
 		while((str = br.readLine()) != null) 
-			aUnit.readFile(str);//Sending line to lexical analyzer for parsing
+			//System.out.println(str);
+			parser.parseLine(str);//Sending line to lexical analyzer for parsing
 		PrintLst(aUnit.asmFile);
+		aUnit.errep.printErrors();
 	}
 	public String PrintLst(Linestatement[] lstFile) {
 		String str = String.format("%-5s%-6s%-15s%-15s%-20s%-15s%n", "Line", "Addr", "Machine Code", "Label","Assembly Code", "Comments");
 		for (int i = 0;  i < lstFile.length; i++) 
-			str += String.format("%-5d%04X  %02X\t    %25s%n", i+1, lstFile[i].getInstruction().getAddress(),lstFile[i].getInstruction().getMnemonic().getOpcode(), lstFile[i].getInstruction().getMnemonic().identifier, lstFile[i].getInstruction().getOperand().toString());
+			str += String.format("%-5d%04X  %02X\t\t %-10s\t  %s\t %s%n", i+1, lstFile[i].getInstruction().getAddress(),lstFile[i].getInstruction().getMnemonic().getOpcode(), lstFile[i].getLabel().toString(), lstFile[i].getInstruction().getMnemonic().identifier, lstFile[i].getComment().toString());
 		return str;
 	}
 	public void GenerateLstFile() throws IOException {

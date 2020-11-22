@@ -1,9 +1,13 @@
 package assembler;
 
 public class SymbolTable {
-	static Node[] table = new Node[25];
+	static Node[] table = new Node[50]; //25 for instructions 25 for labels 
+	static int currSize;
+	static int maxSize;
 	public SymbolTable() {
 		BuildTable();
+		currSize = 25;
+		maxSize = 50;
 	}
 
 	/*
@@ -13,11 +17,18 @@ public class SymbolTable {
 	 */
 	public static int getOpcode(String mnemonic) //Returns Opcode
 	{
-		for (int i = 0; i<25; i++)
+		for (int i = 0; i < maxSize; i++)
 			if (mnemonic == table[i].getNodeIdentifier()) {
 				return table[i].getNodeHex();
 			}
 		return -1;//incorrect identifier
+	}
+	
+	public static void addNode(Node n) {
+		if(currSize < maxSize) {
+			table[currSize++] = n;
+			System.out.println("added node " + n.getNodeIdentifier() + n.getNodeHex());
+		}
 	}
 
 	public void BuildTable() 

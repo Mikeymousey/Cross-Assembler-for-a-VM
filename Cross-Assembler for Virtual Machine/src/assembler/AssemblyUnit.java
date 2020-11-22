@@ -9,6 +9,7 @@ public class AssemblyUnit {
 	public Linestatement [] asmFile; 
 	public String fileName;
 	public int address;
+	private Parser parser;
 	public AssemblyUnit(String filename) throws IOException 
 	{
 		fileName = filename;
@@ -17,11 +18,17 @@ public class AssemblyUnit {
 		errep = new ErrorReporter();
 		new SymbolTable();
 		Lex = new Lexicalanalyzer(this);
-		SourceFile sf = new SourceFile(this);
+		parser = new Parser(this, Lex);
+		SourceFile sf = new SourceFile(this, parser);
+		
 		sf.GenerateLstFile();
 	}
-	public void readFile(String s) throws IOException 
+	/*public void readFile(String s) throws IOException 
 	{
+		if(s.charAt(0) != '\t') {
+			
+		}
+		
 		String str = s.trim();
 		char[] wordBuf = new char[str.length()];
 		int inWordCnt = 0;
@@ -41,17 +48,17 @@ public class AssemblyUnit {
 			currPos.incChar();
 		}
 		currPos.incLine();
-	}
-	private boolean isSpace(int c) 
-	{
-		return (c == ' ' || c == '\t' || c == '\n');
-	}
+	}*/
+
 	public void createArray() 
 	{
 		for(int i = 0; i<asmFile.length; i++) //Create instances
 			asmFile[i] = new Linestatement();
 	}
-
+	
+	public Lexicalanalyzer getLexer() {
+		return Lex;
+	}
 		
 	
 }

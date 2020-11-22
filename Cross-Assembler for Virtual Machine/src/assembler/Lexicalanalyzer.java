@@ -8,9 +8,9 @@ public class Lexicalanalyzer
 	{
 		this.aUnit = aUnit;
 	}
-	public void Parse(char[] linestatement) 
-	{
-		String token = new String(linestatement);		
+	public String scanIdentifier(String token) 
+	{		
+				System.out.println("identifier recieved: " + token + " of length: " + token.length());
 				switch(token) 
 				{
 //---------------------------------------------------------------------------- INSTRUCTION FORMAT ---------------------------------------------------------------------------------------//
@@ -19,39 +19,39 @@ public class Lexicalanalyzer
 				case "halt":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("halt");
-					break;
+					return "Inherent";
 				case "pop":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("pop");
-					break;
+					return "Inherent";
 				case "dup":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("dup");
-					break;
+					return "Inherent";
 				case "exit":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("exit");
-					break;
+					return "Inherent";
 				case "ret":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("ret");
-					break;
+					return "Inherent";
 				case "not":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("not");
-					break;
+					return "Inherent";
 				case "and":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("and");
-					break;
+					return "Inherent";
 				case "or":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("or");
-					break;
+					return "Inherent";
 				case "xor":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("xor");
-					break;
+					return "Inherent";
 				case "neg":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("neg");
@@ -83,111 +83,126 @@ public class Lexicalanalyzer
 				case "rem":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("rem");
-					break;
+					return "Inherent";
 				case "shl":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("shl");
-					break;
+					return "Inherent";
 				case "shr":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("shr");
-					break;
+					return "Inherent";
 				case "teq":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("teq");
-					break;
+					return "Inherent";
 				case "tne":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tne");
-					break;
+					return "Inherent";
 				case "tlt":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tlt");
-					break;
+					return "Inherent";
 				case "tgt":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tgt");
-					break;
+					return "Inherent";
 				case "tle":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tle");
-					break;
+					return "Inherent";
 				case "tge":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tge");
-					break;
+					return "Inherent";
 //-------------------------------------------------------------------------------- INHERENT ---------------------------------------------------------------------------------------//
 //-------------------------------------------------------------------------------- IMMEDIATE ---------------------------------------------------------------------------------------//
 
 				case "br.i5":
+					//aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Immediate());
 					SetLine("br.i5");
-					break;
+					return "Immediate";
 				case "brf.l5":
 					SetLine("brf.l5");
-					break;
+					return "Immediate";
 				case "enter.u5":
 					SetLine("enter.u5");
-					break;
+					return "Immediate";
 				case "ldc.i3":
 					SetLine("ldc.i3");
-					break;
+					return "Immediate";
 				case "addv.u3":
 					SetLine("addv.u3");
-					break;
+					return "Immediate";
 				case "ldv.u3":
 					SetLine("ldv.u3");
-					break;
+					return "Immediate";
 				case "stv.u3":
 					SetLine("stv.u3");
-					break;
+					return "Immediate";
 //-------------------------------------------------------------------------------- IMMEDIATE ---------------------------------------------------------------------------------------//
 //-------------------------------------------------------------------------------- RELATIVE ---------------------------------------------------------------------------------------//
 				case "addv.u8":
 					SetLine("addv.u8");
-					break;
+					return "Relative";
 				case "ldv.u8":
 					SetLine("ldv.u8");
-					break;
+					return "Relative";
 				case "stv.u8":
 					SetLine("stv.u8");
-					break;
+					return "Relative";
 				case "incv.u8":
 					SetLine("incv.u8");
-					break;
+					return "Relative";
 				case "enter.u8":
 					SetLine("enter.u8");
-					break;
+					return "Relative";
 				case "lda.il6":
 					SetLine("lda.il6");
-					break;
+					return "Relative";
 				case "ldc.i8":
 					SetLine("ldc.i8");
-					break;
+					return "Relative";
 				case "ldc.il6":
 					SetLine("ldc.il6");
-					break;
+					return "Relative";
 				case "ldc.i32":
 					SetLine("ldc.i32");
-					break;
+					return "Relative";
 				case "br.i8":
 					SetLine("br.i8");
-					break;
+					return "Relative";
 				case "br.il6":
 					SetLine("br.il6");
-					break;
+					return "Relative";
 				case "brf.i8":
 					SetLine("brf.i8");
-					break;
+					return "Relative";
 				case "call.il6":
 					SetLine("call.il6");
-					break;
+					return "Relative";
 				case "trap":
 					SetLine("trap");
-					break;
+					return "Relative";
 				default:
-					aUnit.errep.reportError("unrecognized mnemonic", aUnit.currPos);
+					aUnit.errep.reportError("unrecognized mnemonic", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+					return "Error";
 				}//end of switch
+				return "?";
 	}//end of Parse method
+	public void scanLabel(String token) {
+		aUnit.asmFile[aUnit.currPos.getLine()].setLabel(new Label(token));
+		Node n = new Node(token, aUnit.address);
+		SymbolTable.addNode(n);
+	}
+	public void scanComment(String comm) {
+		System.out.println("comment recieved: " + comm);
+		aUnit.asmFile[aUnit.currPos.getLine()].setComment(new Comment(comm));
+	}
+	public void scanNumber(String n) {
+		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setOperand(new Operand(Integer.parseInt(n)));
+	}
 	private void SetLine(String instruction) {
 		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().setIdentifications(instruction);
 		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setAddress(aUnit.address);
