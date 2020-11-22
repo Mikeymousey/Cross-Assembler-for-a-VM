@@ -26,15 +26,6 @@ public class Parser {
 			switch(type) {
 			case "Inherent":
 				//if inherent there is nothing left to scan
-				while((aUnit.currPos.getCharacter()) < s.length() - 1) {
-					if(s.charAt(aUnit.currPos.getCharacter()) == ';') {
-						String comm = s.substring(aUnit.currPos.getCharacter());
-						lex.scanComment(comm);
-						aUnit.currPos.incLine();
-						return;
-					}
-					aUnit.currPos.incChar();
-				}
 				break;
 			case "Immediate":
 				//we know that the operand is immediate data, a number
@@ -56,10 +47,11 @@ public class Parser {
 				break;
 			case "Relative":
 				//operand is either an address, offset, or label deal with in sprint 3 
-			
+				break;
+			}
 			aUnit.currPos.incLine();
 			aUnit.currPos.clearChar();
-			}
+			
 		
 		} else if(isLetter(s.charAt(0))) {
 			label = true;
@@ -90,10 +82,7 @@ public class Parser {
 				break;
 			case "Relative":
 				//operand is either an address, offset, or label deal with in sprint 3 
-			}
-			aUnit.currPos.incLine();
-			aUnit.currPos.clearChar();
-			return;
+				break;
 			}
 		aUnit.currPos.incLine();
 		aUnit.currPos.clearChar();
