@@ -38,7 +38,7 @@ public class SourceFile {
 	public String PrintLst(Linestatement[] lstFile) {
 		String str = String.format("%-5s%-6s%-15s%-15s%-20s%-15s%n", "Line", "Addr", "Machine Code", "Label","Assembly Code", "Comments");
 		for (int i = 0;  i < lstFile.length; i++) 
-			str += String.format("%-5d%04X  %02X\t\t %-10s\t  %s\t %s%n", i+1, lstFile[i].getInstruction().getAddress(),lstFile[i].getInstruction().getMnemonic().getOpcode(), lstFile[i].getLabel().toString(), lstFile[i].getInstruction().getMnemonic().identifier, lstFile[i].getComment().toString());
+			str += String.format("%-5d%04X  %02X\t\t %-10s  %2s\t %s%s%n", i+1, lstFile[i].getInstruction().getAddress(),lstFile[i].getInstruction().getMnemonic().getOpcode(), lstFile[i].getLabel().toString(), lstFile[i].getInstruction().getMnemonic().identifier, lstFile[i].getInstruction().getOperand().toString(), lstFile[i].getComment().toString());
 		return str;
 	}
 	public void GenerateLstFile() throws IOException {

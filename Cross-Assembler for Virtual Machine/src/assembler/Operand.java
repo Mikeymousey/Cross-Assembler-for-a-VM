@@ -7,7 +7,7 @@ public class Operand {
 	}
 	
 	public Operand() {
-		operand = 0;
+		this(420);
 	}
 	
 	public void setValue(int a) {
@@ -19,6 +19,10 @@ public class Operand {
 	}
 	
 	public String toString() {
-		return "This is the operand";
+		if(operand != 420) {
+			return Integer.toString(operand);
+		} else {
+			return "";
+		}
 	}
 }

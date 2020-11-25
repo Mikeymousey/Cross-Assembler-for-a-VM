@@ -18,7 +18,7 @@ public class Parser {
 			System.out.print("null string passed to parser");
 			return;
 		}
-		char a = s.charAt(aUnit.currPos.getCharacter());
+		char a = s.charAt(aUnit.currPos.getCharacter()); //for debugging purposes, unused in code
 		if(s.charAt(0) == '\t') {
 			label = false;
 			String s0 = nextToken(s);
@@ -26,37 +26,39 @@ public class Parser {
 			switch(type) {
 			case "Inherent":
 				//if inherent there is nothing left to scan
+				
 				break;
 			case "Immediate":
-				//we know that the operand is immediate data, a number
+				//we know that the operand is immediate data, a number or label
+				String expected = lex.expect(); //important that this is called before nextToken()
 				String t = nextToken(s);
-				if(!isLetter(t.charAt(0))) {
-					lex.scanNumber(t); //implied that this is an operand 
-				} else {
-					aUnit.errep.reportError("expected immediate data after an immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter()); 
-				}
-				while(aUnit.currPos.getCharacter() < s.length() - 1) {
-					if(s.charAt(aUnit.currPos.getCharacter()) == ';') {
-						String comm = s.substring(aUnit.currPos.getCharacter() + 1);
-						lex.scanComment(comm);
-						aUnit.currPos.incLine();
-						return;
+				if(expected == "number") {
+					if(!isLetter(t.charAt(0))) {
+						lex.scanNumber(t); //implied that this is an operand 
+					} else {
+						aUnit.errep.reportError("expected immediate data after an immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter()); 
 					}
-					aUnit.currPos.incChar();
+					break;
+				} else if(expected == "label") {
+					if(isLetter(t.charAt(0))) {
+						lex.scanLabel(t);
+					} else {
+						aUnit.errep.reportError("expected label after immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+					}
+				} else {
+					aUnit.errep.reportError("unrealistic expectation", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
 				}
-				break;
 			case "Relative":
 				//operand is either an address, offset, or label deal with in sprint 3 
-				break;
-			}
+			
 			aUnit.currPos.incLine();
 			aUnit.currPos.clearChar();
-			
+			}
 		
 		} else if(isLetter(s.charAt(0))) {
 			label = true;
 			String s0 = nextToken(s);
-			lex.scanLabel(s0);
+			lex.makeLabel(s0);
 		} else {
 			aUnit.errep.reportError("expected line to start with tab or label", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
 		}
@@ -84,14 +86,16 @@ public class Parser {
 				//operand is either an address, offset, or label deal with in sprint 3 
 				break;
 			}
+
+		}
 		aUnit.currPos.incLine();
 		aUnit.currPos.clearChar();
-		}
+	}
 		//now that we've gotten the instruction we can know whether or not there should be an operand
 		
 		
 	public String nextToken(String s) {
-		int srcBegin = 0;
+		int srcBegin = aUnit.currPos.getCharacter();
 		int srcEnd = 0;
 		char[] wordBuf = new char[s.length()];
 		boolean inWord = false;

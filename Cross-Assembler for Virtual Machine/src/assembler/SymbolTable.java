@@ -6,7 +6,7 @@ public class SymbolTable {
 	static int maxSize;
 	public SymbolTable() {
 		BuildTable();
-		currSize = 25;
+		currSize = 26;
 		maxSize = 50;
 	}
 
@@ -17,7 +17,7 @@ public class SymbolTable {
 	 */
 	public static int getOpcode(String mnemonic) //Returns Opcode
 	{
-		for (int i = 0; i < maxSize; i++)
+		for (int i = 0; i < currSize; i++)
 			if (mnemonic == table[i].getNodeIdentifier()) {
 				return table[i].getNodeHex();
 			}
@@ -58,6 +58,7 @@ public class SymbolTable {
 		table[22] = new Node("tgt", 0x1D);
 		table[23] = new Node("tle", 0x1E);
 		table[24] = new Node("tge", 0x1F);
+		table[25] = new Node("ldc.i3", 0x90);
 	}
 	
 

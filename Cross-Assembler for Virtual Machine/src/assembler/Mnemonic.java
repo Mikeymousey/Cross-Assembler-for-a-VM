@@ -22,4 +22,8 @@ public class Mnemonic{
 		identifier = str;
 		opcode = SymbolTable.getOpcode(str);
 	}
+	
+	public void addOperand(int n) {
+		opcode += n;
+	}
 }
