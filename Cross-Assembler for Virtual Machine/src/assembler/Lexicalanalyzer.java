@@ -3,6 +3,7 @@ package assembler;
 public class Lexicalanalyzer 
 {
 	public AssemblyUnit aUnit;
+	private String expected = "none";
 	//Constructor
 	public Lexicalanalyzer(AssemblyUnit aUnit) 
 	{
@@ -19,127 +20,169 @@ public class Lexicalanalyzer
 				case "halt":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("halt");
+					expected = "none";
 					return "Inherent";
 				case "pop":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("pop");
+					expected = "none";
 					return "Inherent";
 				case "dup":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("dup");
+					expected = "none";
 					return "Inherent";
 				case "exit":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("exit");
+					expected = "none";
 					return "Inherent";
 				case "ret":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("ret");
+					expected = "none";
 					return "Inherent";
 				case "not":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("not");
+					expected = "none";
 					return "Inherent";
 				case "and":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("and");
+					expected = "none";
 					return "Inherent";
 				case "or":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("or");
+					expected = "none";
 					return "Inherent";
 				case "xor":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("xor");
+					expected = "none";
 					return "Inherent";
 				case "neg":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("neg");
+					expected = "none";
 					break;
 				case "inc":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("inc");
+					expected = "none";
 					break;
 				case "dec":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("dec");
+					expected = "none";
 					break;
 				case "add":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("add");
+					expected = "none";
 					break;
 				case "sub":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("sub");
+					expected = "none";
 					break;
 				case "mul":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("mul");
+					expected = "none";
 					break;
 				case "div":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("div");
+					expected = "none";
 					break;
 				case "rem":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("rem");
+					expected = "none";
 					return "Inherent";
 				case "shl":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("shl");
+					expected = "none";
 					return "Inherent";
 				case "shr":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("shr");
+					expected = "none";
 					return "Inherent";
 				case "teq":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("teq");
+					expected = "none";
 					return "Inherent";
 				case "tne":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tne");
+					expected = "none";
 					return "Inherent";
 				case "tlt":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tlt");
+					expected = "none";
 					return "Inherent";
 				case "tgt":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tgt");
+					expected = "none";
 					return "Inherent";
 				case "tle":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tle");
+					expected = "none";
 					return "Inherent";
 				case "tge":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Inherent());
 					SetLine("tge");
+					expected = "none";
 					return "Inherent";
 //-------------------------------------------------------------------------------- INHERENT ---------------------------------------------------------------------------------------//
 //-------------------------------------------------------------------------------- IMMEDIATE ---------------------------------------------------------------------------------------//
 
-				case "br.i5":
-					//aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Immediate());
+				case "br.i5": //takes a label
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Immediate());
 					SetLine("br.i5");
+					expected = "label";
 					return "Immediate";
-				case "brf.l5":
-					SetLine("brf.l5");
+				case "brf.15": //takes a label 
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Immediate());
+					SetLine("brf.15");
+					expected = "label";
 					return "Immediate";
-				case "enter.u5":
+				case "enter.u5"://takes FctInfo ??
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Immediate());
 					SetLine("enter.u5");
+					expected = "label";
 					return "Immediate";
-				case "ldc.i3":
+				case "ldc.i3": //takes number
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Immediate());
 					SetLine("ldc.i3");
+					((Immediate) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-4, 3);
+					expected = "number";
 					return "Immediate";
 				case "addv.u3":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Immediate());	
 					SetLine("addv.u3");
+					((Immediate) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(0, 7);
+					expected = "number";
 					return "Immediate";
 				case "ldv.u3":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Immediate());
 					SetLine("ldv.u3");
+					((Immediate) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(0, 7);
+					expected = "number";
 					return "Immediate";
 				case "stv.u3":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Immediate());
 					SetLine("stv.u3");
+					((Immediate) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(0, 7);
+					expected = "number";
 					return "Immediate";
 //-------------------------------------------------------------------------------- IMMEDIATE ---------------------------------------------------------------------------------------//
 //-------------------------------------------------------------------------------- RELATIVE ---------------------------------------------------------------------------------------//
@@ -191,10 +234,21 @@ public class Lexicalanalyzer
 				}//end of switch
 				return "?";
 	}//end of Parse method
+	public void makeLabel(String token) {
+		if(SymbolTable.getOpcode(token) == -1) {
+			aUnit.asmFile[aUnit.currPos.getLine()].setLabel(new Label(token));
+			Node n = new Node(token, aUnit.address);
+			SymbolTable.addNode(n);
+		} else {
+			aUnit.errep.reportError("Label already exists", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+		}
+	}
 	public void scanLabel(String token) {
-		aUnit.asmFile[aUnit.currPos.getLine()].setLabel(new Label(token));
-		Node n = new Node(token, aUnit.address);
-		SymbolTable.addNode(n);
+		if(SymbolTable.getOpcode(token) != -1) {
+			scanNumber(SymbolTable.getOpcode(token));
+		} else {
+			aUnit.errep.reportError("Unrecognized label", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+		}
 	}
 	public void scanComment(String comm) {
 		System.out.println("comment recieved: " + comm);
@@ -202,6 +256,9 @@ public class Lexicalanalyzer
 	}
 	public void scanNumber(String n) {
 		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setOperand(new Operand(Integer.parseInt(n)));
+	}
+	public void scanNumber(int n) {
+		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setOperand(new Operand(n));
 	}
 	private void SetLine(String instruction) {
 		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().setIdentifications(instruction);
@@ -213,5 +270,9 @@ public class Lexicalanalyzer
 	}
 	public void incAddress() {
 		aUnit.address += 1;
+	}
+	
+	public String expect() {
+		return expected;
 	}
 }
