@@ -42,4 +42,12 @@ public class Immediate extends Instruction {
 		rangeHigh = h;
 		rangeLow = l;
 	}
+	
+	@Override public boolean inRange(int n) {
+		if(n < rangeLow || n > rangeHigh) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

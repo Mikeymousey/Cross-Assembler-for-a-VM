@@ -48,6 +48,7 @@ public class Parser {
 				} else {
 					aUnit.errep.reportError("unrealistic expectation", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
 				}
+				break;
 			case "Relative":
 				//operand is either an address, offset, or label deal with in sprint 3 
 			

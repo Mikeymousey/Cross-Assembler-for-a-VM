@@ -1,13 +1,18 @@
 package assembler;
 
 public class SymbolTable {
-	static Node[] table = new Node[50]; //25 for instructions 25 for labels 
+	static Node[] table;  
+	static final int defaultSize = 100;
 	static int currSize;
 	static int maxSize;
-	public SymbolTable() {
+	public SymbolTable(int n) {
+		table = new Node[n];
+		maxSize = n;
 		BuildTable();
-		currSize = 26;
-		maxSize = 50;
+	}
+	
+	public SymbolTable() {
+		this(defaultSize);
 	}
 
 	/*
@@ -18,7 +23,7 @@ public class SymbolTable {
 	public static int getOpcode(String mnemonic) //Returns Opcode
 	{
 		for (int i = 0; i < currSize; i++)
-			if (mnemonic == table[i].getNodeIdentifier()) {
+			if (mnemonic == table[i].getNodeIdentifier() || mnemonic.equals(table[i].getNodeIdentifier())) {
 				return table[i].getNodeHex();
 			}
 		return -1;//incorrect identifier
@@ -27,7 +32,7 @@ public class SymbolTable {
 	public static void addNode(Node n) {
 		if(currSize < maxSize) {
 			table[currSize++] = n;
-			System.out.println("added node " + n.getNodeIdentifier() + n.getNodeHex());
+			System.out.println("added node: " + n.getNodeIdentifier() + "at: " + n.getNodeHex());
 		}
 	}
 
@@ -58,7 +63,14 @@ public class SymbolTable {
 		table[22] = new Node("tgt", 0x1D);
 		table[23] = new Node("tle", 0x1E);
 		table[24] = new Node("tge", 0x1F);
-		table[25] = new Node("ldc.i3", 0x90);
+		table[25] = new Node("br.i5", 0x30);
+		table[26] = new Node("brf.15", 0x50);
+		table[27] = new Node("enter.u5", 0x70);
+		table[28] = new Node("ldc.i3", 0x90);
+		table[29] = new Node("addv.u3", 0x98);
+		table[30] = new Node("ldv.u3", 0xA0);
+		table[31] = new Node("stv.u3", 0xA8);
+		currSize = 32;
 	}
 	
 

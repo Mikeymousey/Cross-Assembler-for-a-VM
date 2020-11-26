@@ -33,4 +33,8 @@ public class Instruction{
 	public void setOperand(Operand operand) {
 		this.operand = operand;
 	}
+	
+	public boolean inRange(int n) {
+		return true;
+	}
 }

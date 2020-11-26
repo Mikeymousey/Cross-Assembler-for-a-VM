@@ -255,10 +255,19 @@ public class Lexicalanalyzer
 		aUnit.asmFile[aUnit.currPos.getLine()].setComment(new Comment(comm));
 	}
 	public void scanNumber(String n) {
-		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setOperand(new Operand(Integer.parseInt(n)));
+		int op = Integer.parseInt(n);
+		if(aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().inRange(op)) {
+			aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setOperand(new Operand(op));
+		} else {
+			aUnit.errep.reportError("Operand out of range", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+		}
 	}
 	public void scanNumber(int n) {
-		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setOperand(new Operand(n));
+		if(aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().inRange(n)) {
+			aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setOperand(new Operand(n));
+		} else {
+			aUnit.errep.reportError("Operand out of range", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+		}
 	}
 	private void SetLine(String instruction) {
 		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().setIdentifications(instruction);
