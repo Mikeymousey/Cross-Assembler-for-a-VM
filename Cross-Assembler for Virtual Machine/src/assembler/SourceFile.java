@@ -33,6 +33,7 @@ public class SourceFile {
 			//System.out.println(str);
 			parser.parseLine(str);//Sending line to lexical analyzer for parsing
 		PrintLst(aUnit.asmFile);
+		generateExeFile();
 		aUnit.errep.printErrors();
 	}
 	public String PrintLst(Linestatement[] lstFile) {
@@ -42,12 +43,23 @@ public class SourceFile {
 		return str;
 	}
 	public void GenerateLstFile() throws IOException {
-		BufferedWriter bw = new BufferedWriter(new FileWriter("TranslatedToLst.lst"));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(filePrefix + ".lst"));
 		bw.write(PrintLst(aUnit.asmFile));
 		bw.flush();
 	}
 	public String getFileName() {
 		return filePrefix;
+	}
+	public String PrintExe(Linestatement[] lstFile) {
+        String str = "";
+        for (int i = 0;  i < lstFile.length; i++) 
+            str += String.format("%02X", lstFile[i].getInstruction().getMnemonic().getOpcode());
+        return str;
+    }
+	public void generateExeFile() throws IOException {
+		BufferedWriter bw = new BufferedWriter(new FileWriter(filePrefix + ".exe"));
+		bw.write(PrintExe(aUnit.asmFile));
+		bw.flush();
 	}
 	public void setFileName(String fileName) {
 		this.filePrefix = fileName;
