@@ -9,8 +9,9 @@ public class ErrorMessage {
 		pos = p;
 	}
 	
-	public void printMessage() {
-		System.out.println(message);
-		System.out.println("at line" + pos.getLine() + ", character " + pos.getCharacter());
+	public String printMessage() {
+		return message + " at line " + pos.getLine() + ", character " + pos.getCharacter();
+		
 	}
 }
+
