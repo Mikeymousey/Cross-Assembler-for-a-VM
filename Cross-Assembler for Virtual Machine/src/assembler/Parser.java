@@ -50,16 +50,33 @@ public class Parser {
 				}
 				break;
 			case "Relative":
-				//operand is either an address, offset, or label deal with in sprint 3 
-			
-			aUnit.currPos.incLine();
-			aUnit.currPos.clearChar();
+				//operand is either an address, offset, or label deal with in sprint 3
+				expected = lex.expect();
+				t = nextToken(s);
+				if(expected == "number") {
+					if(!isLetter(t.charAt(0))) {
+						lex.scanNumber(t); //implied that this is an operand 
+					} else {
+						aUnit.errep.reportError("expected immediate data after an immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter()); 
+					}
+					break;
+				} else if(expected == "label") {
+					if(isLetter(t.charAt(0))) {
+						lex.scanLabel(t);
+					} else {
+						aUnit.errep.reportError("expected label after immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+					}
+				} else {
+					aUnit.errep.reportError("unrealistic expectation", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+				}
 			}
 		
 		} else if(isLetter(s.charAt(0))) {
 			label = true;
 			String s0 = nextToken(s);
 			lex.makeLabel(s0);
+		} else if(s.charAt(0) == '.') {
+			
 		} else {
 			aUnit.errep.reportError("expected line to start with tab or label", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
 		}

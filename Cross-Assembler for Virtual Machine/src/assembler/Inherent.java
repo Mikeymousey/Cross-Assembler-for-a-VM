@@ -8,7 +8,7 @@ public class Inherent extends Instruction {
 	public Inherent () {
 		mnemonic = new Mnemonic();
 		operand = new Operand();
-		Size = 0x02;
+		Size = 1;
 	}
 	public Mnemonic getMnemonic() {
 		return mnemonic;

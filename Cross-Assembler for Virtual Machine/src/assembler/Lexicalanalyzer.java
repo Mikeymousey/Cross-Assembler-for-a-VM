@@ -187,45 +187,86 @@ public class Lexicalanalyzer
 //-------------------------------------------------------------------------------- IMMEDIATE ---------------------------------------------------------------------------------------//
 //-------------------------------------------------------------------------------- RELATIVE ---------------------------------------------------------------------------------------//
 				case "addv.u8":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
+					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(0, 255);
 					SetLine("addv.u8");
 					return "Relative";
 				case "ldv.u8":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
+					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(0, 255);
 					SetLine("ldv.u8");
 					return "Relative";
 				case "stv.u8":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
+					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(0, 255);
 					SetLine("stv.u8");
 					return "Relative";
 				case "incv.u8":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
+					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(0, 255);
 					SetLine("incv.u8");
 					return "Relative";
 				case "enter.u8":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
+					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(0, 255);
 					SetLine("enter.u8");
 					return "Relative";
 				case "lda.il6":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(3);
+					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-32768, 32767);
 					SetLine("lda.il6");
 					return "Relative";
 				case "ldc.i8":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
+					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-128, 127);
 					SetLine("ldc.i8");
 					return "Relative";
 				case "ldc.il6":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(3);
+					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-32768, 32767);
 					SetLine("ldc.il6");
 					return "Relative";
 				case "ldc.i32":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(5);
+					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-2147483648, 2147483647);
 					SetLine("ldc.i32");
 					return "Relative";
 				case "br.i8":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
+					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-128, 127);
 					SetLine("br.i8");
 					return "Relative";
 				case "br.il6":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(3);
+					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-32768, 23767);
 					SetLine("br.il6");
 					return "Relative";
 				case "brf.i8":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
+					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-128, 127);
 					SetLine("brf.i8");
 					return "Relative";
 				case "call.il6":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(3);
+					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-32768, 32767);
 					SetLine("call.il6");
 					return "Relative";
 				case "trap":
+					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
 					SetLine("trap");
 					return "Relative";
 				default:
@@ -234,6 +275,9 @@ public class Lexicalanalyzer
 				}//end of switch
 				return "?";
 	}//end of Parse method
+	public void scanDirective() {
+		String c;
+	}
 	public void makeLabel(String token) {
 		if(SymbolTable.getOpcode(token) == -1) {
 			aUnit.asmFile[aUnit.currPos.getLine()].setLabel(new Label(token));
@@ -278,7 +322,7 @@ public class Lexicalanalyzer
 		System.out.println("");
 	}
 	public void incAddress() {
-		aUnit.address += 1;
+		aUnit.address += aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getSize();
 	}
 	
 	public String expect() {

@@ -70,7 +70,22 @@ public class SymbolTable {
 		table[29] = new Node("addv.u3", 0x98);
 		table[30] = new Node("ldv.u3", 0xA0);
 		table[31] = new Node("stv.u3", 0xA8);
-		currSize = 32;
+		table[32] = new Node("addv.u8", 0xB0);
+		table[33] = new Node("ldv.u8", 0xB1);
+		table[34] = new Node("stv.u8", 0xB2);
+		table[35] = new Node("incv.u8", 0xB3);
+		table[36] = new Node("decv.u8", 0xB4);
+		table[37] = new Node("enter.u8", 0xBF);
+		table[38] = new Node("lda.i16", 0xD5);
+		table[39] = new Node("ldc.i8", 0xD9);
+		table[40] = new Node("ldc.i16", 0xDA);
+		table[41] = new Node("ldc.i32", 0xDB);
+		table[42] = new Node("br.i8", 0xE0);
+		table[43] = new Node("br.i16", 0xE1);
+		table[44] = new Node("brf.i8", 0xE3);
+		table[45] = new Node("call.i16", 0xE7);
+		table[46] = new Node("trap", 0xFF);
+		currSize = 47;
 	}
 	
 
