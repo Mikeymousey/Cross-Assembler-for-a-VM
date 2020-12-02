@@ -32,45 +32,72 @@ public class Parser {
 				//we know that the operand is immediate data, a number or label
 				String expected = lex.expect(); //important that this is called before nextToken()
 				String t = nextToken(s);
-				if(expected == "number") {
+				switch(expected) {
+				case "number":
 					if(!isLetter(t.charAt(0))) {
 						lex.scanNumber(t); //implied that this is an operand 
 					} else {
 						aUnit.errep.reportError("expected immediate data after an immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter()); 
 					}
 					break;
-				} else if(expected == "label") {
+				case "label":
 					if(isLetter(t.charAt(0))) {
 						lex.scanLabel(t);
 					} else {
 						aUnit.errep.reportError("expected label after immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
 					}
-				} else {
+					break;
+				case "all": 
+					if(isLetter(t.charAt(0))) {
+						lex.scanLabel(t);
+					} else if (isDigit(t.charAt(0)) || (t.charAt(0) == '-' && isDigit(t.charAt(1)))) {
+						lex.scanNumber(t);
+					} else {
+						aUnit.errep.reportError("expected operand after immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+					}
+					break;
+				case "none":
+					break;
+				default:
 					aUnit.errep.reportError("unrealistic expectation", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+					break;
 				}
-				break;
 			case "Relative":
 				//operand is either an address, offset, or label deal with in sprint 3
 				expected = lex.expect();
 				t = nextToken(s);
-				if(expected == "number") {
-					if(!isLetter(t.charAt(0))) {
+				switch(expected) {
+				case "number":
+					if(isDigit(t.charAt(0)) || (t.charAt(0) == '-' && isDigit(t.charAt(1)))) {
 						lex.scanNumber(t); //implied that this is an operand 
 					} else {
 						aUnit.errep.reportError("expected immediate data after an immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter()); 
 					}
 					break;
-				} else if(expected == "label") {
+				case "label":
 					if(isLetter(t.charAt(0))) {
 						lex.scanLabel(t);
 					} else {
 						aUnit.errep.reportError("expected label after immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
 					}
-				} else {
+					break;
+				case "all": 
+					if(isLetter(t.charAt(0))) {
+						lex.scanLabel(t);
+					} else if (isDigit(t.charAt(0)) || (t.charAt(0) == '-' && isDigit(t.charAt(1)))) {
+						lex.scanNumber(t);
+					} else {
+						aUnit.errep.reportError("expected operand after immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+					}
+					break;
+				case "none":
+					break;
+				default:
 					aUnit.errep.reportError("unrealistic expectation", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+					break;
 				}
 			}
-		
+			
 		} else if(isLetter(s.charAt(0))) {
 			label = true;
 			String s0 = nextToken(s);
@@ -92,16 +119,71 @@ public class Parser {
 				//if inherent there is nothing left to scan
 				break;
 			case "Immediate":
-				//we know that the operand is immediate data, a number
+				String expected = lex.expect(); //important that this is called before nextToken()
 				String t = nextToken(s);
-				if(!isLetter(t.charAt(0))) {
-					lex.scanNumber(t); //implied that this is an operand 
-				} else {
-					aUnit.errep.reportError("expected immediate data after an immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter()); 
+				switch(expected) {
+				case "number":
+					if(!isLetter(t.charAt(0))) {
+						lex.scanNumber(t); //implied that this is an operand 
+					} else {
+						aUnit.errep.reportError("expected immediate data after an immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter()); 
+					}
+					break;
+				case "label":
+					if(isLetter(t.charAt(0))) {
+						lex.scanLabel(t);
+					} else {
+						aUnit.errep.reportError("expected label after immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+					}
+					break;
+				case "all": 
+					if(isLetter(t.charAt(0))) {
+						lex.scanLabel(t);
+					} else if (isDigit(t.charAt(0)) || (t.charAt(0) == '-' && isDigit(t.charAt(1)))) {
+						lex.scanNumber(t);
+					} else {
+						aUnit.errep.reportError("expected operand after immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+					}
+					break;
+				case "none":
+					break;
+				default:
+					aUnit.errep.reportError("unrealistic expectation", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+					break;
 				}
-				break;
 			case "Relative":
-				//operand is either an address, offset, or label deal with in sprint 3 
+				expected = lex.expect();
+				t = nextToken(s);
+				switch(expected) {
+				case "number":
+					if(isDigit(t.charAt(0)) || (t.charAt(0) == '-' && isDigit(t.charAt(1)))) {
+						lex.scanNumber(t); //implied that this is an operand 
+					} else {
+						aUnit.errep.reportError("expected immediate data after an immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter()); 
+					}
+					break;
+				case "label":
+					if(isLetter(t.charAt(0))) {
+						lex.scanLabel(t);
+					} else {
+						aUnit.errep.reportError("expected label after immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+					}
+					break;
+				case "all": 
+					if(isLetter(t.charAt(0))) {
+						lex.scanLabel(t);
+					} else if (isDigit(t.charAt(0)) || (t.charAt(0) == '-' && isDigit(t.charAt(1)))) {
+						lex.scanNumber(t);
+					} else {
+						aUnit.errep.reportError("expected operand after immediate instruction", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+					}
+					break;
+				case "none":
+					break;
+				default:
+					aUnit.errep.reportError("unrealistic expectation", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+					break;
+				} 
 				break;
 			}
 
@@ -162,6 +244,10 @@ public class Parser {
 				|| c == 'S' || c == 'T' || c == 'U' || c == 'V' || c == 'W' || c == 'X' || c == 'Y' || c == 'Z');
 	}
 	
+	private boolean isDigit(int c) {
+		return (c == '0' || c == '1'|| c == '2' || c == '3' || c == '4' || c == '5' || c == '6'
+				|| c == '7' || c == '8' || c == '9');
+	}
 	
 	
 	

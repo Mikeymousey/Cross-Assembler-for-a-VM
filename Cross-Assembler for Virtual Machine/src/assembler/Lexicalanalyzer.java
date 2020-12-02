@@ -186,7 +186,7 @@ public class Lexicalanalyzer
 					return "Immediate";
 //-------------------------------------------------------------------------------- IMMEDIATE ---------------------------------------------------------------------------------------//
 //-------------------------------------------------------------------------------- RELATIVE ---------------------------------------------------------------------------------------//
-				case "addv.u8":
+				/*case "addv.u8":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
 					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
 					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(0, 255);
@@ -215,14 +215,15 @@ public class Lexicalanalyzer
 					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
 					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(0, 255);
 					SetLine("enter.u8");
-					return "Relative";
-				case "lda.il6":
+					return "Relative";*/
+				case "lda.i16":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
 					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(3);
 					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-32768, 32767);
-					SetLine("lda.il6");
+					expected = "label";
+					SetLine("lda.i16");
 					return "Relative";
-				case "ldc.i8":
+				/*case "ldc.i8":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
 					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
 					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-128, 127);
@@ -257,17 +258,19 @@ public class Lexicalanalyzer
 					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
 					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-128, 127);
 					SetLine("brf.i8");
-					return "Relative";
-				case "call.il6":
+					return "Relative";*/
+				case "call.i16":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
 					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(3);
 					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-32768, 32767);
-					SetLine("call.il6");
+					expected = "none";
+					SetLine("call.i16");
 					return "Relative";
 				case "trap":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
 					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
 					SetLine("trap");
+					expected = "none";
 					return "Relative";
 				default:
 					aUnit.errep.reportError("unrecognized mnemonic", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());

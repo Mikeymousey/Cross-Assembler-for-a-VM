@@ -36,7 +36,7 @@ public class ErrorReporter {
 	}
 	
 	public void printErrors() {
-		if (currSize < 0) {
+		if (currSize > 0) {
 			System.out.println("Errors Reported: ");
 		}
 		for(int i = 0; i < currSize; i++) {
