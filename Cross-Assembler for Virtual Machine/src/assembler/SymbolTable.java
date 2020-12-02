@@ -32,7 +32,6 @@ public class SymbolTable {
 	public static void addNode(Node n) {
 		if(currSize < maxSize) {
 			table[currSize++] = n;
-			System.out.println("added node: " + n.getNodeIdentifier() + "at: " + n.getNodeHex());
 		}
 	}
 
@@ -84,8 +83,9 @@ public class SymbolTable {
 		table[43] = new Node("br.i16", 0xE1);
 		table[44] = new Node("brf.i8", 0xE3);
 		table[45] = new Node("call.i16", 0xE7);
-		table[46] = new Node("trap", 0xFF);
-		currSize = 47;
+		table[46] = new Node("calls.i16", 0xE7);
+		table[47] = new Node("trap", 0xFF);
+		currSize = 48;
 	}
 	
 
