@@ -11,7 +11,7 @@ public class Lexicalanalyzer
 	}
 	public String scanIdentifier(String token) 
 	{		
-				System.out.println("identifier recieved: " + token + " of length: " + token.length());
+				//System.out.println("identifier recieved: " + token + " of length: " + token.length());
 				switch(token) 
 				{
 //---------------------------------------------------------------------------- INSTRUCTION FORMAT ---------------------------------------------------------------------------------------//
@@ -229,11 +229,11 @@ public class Lexicalanalyzer
 					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-128, 127);
 					SetLine("ldc.i8");
 					return "Relative";
-				case "ldc.il6":
+				case "ldc.i16":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
 					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(3);
 					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-32768, 32767);
-					SetLine("ldc.il6");
+					SetLine("ldc.i16");
 					return "Relative";
 				case "ldc.i32":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
@@ -247,11 +247,11 @@ public class Lexicalanalyzer
 					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-128, 127);
 					SetLine("br.i8");
 					return "Relative";
-				case "br.il6":
+				case "br.i16":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
 					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(3);
 					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-32768, 23767);
-					SetLine("br.il6");
+					SetLine("br.i16");
 					return "Relative";
 				case "brf.i8":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
@@ -320,9 +320,9 @@ public class Lexicalanalyzer
 		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().setIdentifications(instruction);
 		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setAddress(aUnit.address);
 		incAddress();
-		System.out.println("Line "+aUnit.currPos.getLine()+". Mnemonic identifier: "+aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().getIdentifier());
-		System.out.printf("Line "+aUnit.currPos.getLine()+". Machine Code: "+ "%02X",aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().getOpcode());
-		System.out.println("");
+	//System.out.println("Line "+aUnit.currPos.getLine()+". Mnemonic identifier: "+aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().getIdentifier());
+	//System.out.printf("Line "+aUnit.currPos.getLine()+". Machine Code: "+ "%02X",aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getMnemonic().getOpcode());
+	//System.out.println("");
 	}
 	public void incAddress() {
 		aUnit.address += aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getSize();

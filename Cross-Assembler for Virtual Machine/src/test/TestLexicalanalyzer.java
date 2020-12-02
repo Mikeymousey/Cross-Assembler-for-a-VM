@@ -13,7 +13,7 @@ public class TestLexicalanalyzer {
         AssemblyUnit aUnit;
     
         aUnit = new AssemblyUnit("Instruction_Test.asm");
-        lexer = new Lexicalanalyzer(aUnit);
+       lexer = new Lexicalanalyzer(aUnit);
        
         
 
@@ -22,12 +22,6 @@ public class TestLexicalanalyzer {
         aUnit.currPos = new Position(0,0);
         aUnit.asmFile[0] = new Linestatement();
       
-
-
-
-
-
-        
         String lextest = lexer.scanIdentifier(tokentest);
 
      
