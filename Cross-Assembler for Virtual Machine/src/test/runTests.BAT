@@ -1,6 +1,6 @@
 @ECHO OFF
 C:
-CD "C:\Users\Luca-Desktop\Desktop\FALL-2020\SOEN341\TEAM\PROJECT B\gitrepo\Cross-Assembler-for-a-VM\Cross-Assembler for Virtual Machine\src"
+CD "C:\Users\Luca-Desktop\Documents\GitHub\Cross-Assembler-for-a-VM\Cross-Assembler for Virtual Machine\src"
 
 javac -cp . test/aunit.java
 ECHO Compiling all TestClasses....
@@ -11,7 +11,9 @@ REM javac -cp . test/TestParser.java
 javac -cp . test/TestLexicalanalyzer.java
 javac -cp . test/TestOperand.java
 javac -cp . test/TestErrorMessage.java
-REM javac -cp . test/TestErrorReporter.java
+javac -cp . test/TestErrorReporter.java
+javac -cp . test/TestInherent.java
+javac -cp . test/TestRelative.java
 javac -cp . test/TestLinestatement.java
 javac -cp . test/TestMnemonic.java
 javac -cp . test/TestPosition.java
@@ -36,9 +38,9 @@ java  -cp . test/TestOperand    >>  Tests.txt
 ECHO ...Running TestLexicalanalyzer....
 java  -cp . test/TestLexicalanalyzer    >>  Tests.txt
 ECHO ...Running TestErrormessage....
-java  -cp . test/TestErrorMessage     >>  Tests.txt
+ java  -cp . test/TestErrorMessage     >>  Tests.txt
 ECHO ...Running TestErrorReporter....
-REM java  -cp . test/TestErrorReporter     >>  Tests.txt
+java  -cp . test/TestErrorReporter     >>  Tests.txt
 ECHO ...Running TestLinestatement....
 java  -cp . test/TestLinestatement     >>  Tests.txt
 ECHO ...Running TestMnemonic....
@@ -47,6 +49,10 @@ ECHO ...Running TestPosition....
 java  -cp . test/TestPosition     >>  Tests.txt
 ECHO ...Running TestSymbolTable....
 java  -cp . test/TestSymbolTable     >>  Tests.txt
+ECHO ...Running TestRelative....
+java  -cp . test/TestRelative       >>  Tests.txt
+ECHO ...Running TestInherent....
+java  -cp . test/TestInherent     >>  Tests.txt
 
 ECHO ...Running aunit and outputting results....
 type Tests.txt

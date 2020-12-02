@@ -1,4 +1,5 @@
 package test;
+
 import assembler.*;
 
 /* aunit.java - AUnit
@@ -15,8 +16,9 @@ class Test {
         this.number = number;
         this.name = name;
     }
-    int     number;
-    String  name;
+
+    int number;
+    String name;
 }
 
 public class aunit {
@@ -35,7 +37,7 @@ public class aunit {
         int testNumber = 1;
 
         // Reading all tests
-        while ( (line = reader.readLine()) != null) {
+        while ((line = reader.readLine()) != null) {
             if (line.startsWith("Test")) {
                 Test test = new Test(testNumber, line);
                 String expectedOutput = reader.readLine();
@@ -58,9 +60,9 @@ public class aunit {
             System.out.println("OK");
         } else {
             System.out.println("\nFailed Tests:");
-            for (Enumeration e = failedTests.elements(); e.hasMoreElements();) {
-                Test t = (Test)e.nextElement();
-                System.out.println("- "+ t.name);
+            for (Enumeration e = failedTests.elements(); e.hasMoreElements(); ) {
+                Test t = (Test) e.nextElement();
+                System.out.println("- " + t.name);
             }
         }
     }
