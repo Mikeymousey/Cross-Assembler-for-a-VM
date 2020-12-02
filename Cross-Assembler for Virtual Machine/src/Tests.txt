@@ -1,0 +1,42 @@
+Test Node
+id[halt],hex[0]
+id[halt],hex[0]
+Test Comment
+This is a new comment
+This is a new comment
+Test Label
+push
+push
+Test Parser
+Parsed Tokens: token0 token1 token2
+Parsed Tokens: token0 token1 token2
+Test Operand
+This is the operand: 2
+This is the operand: 2
+Test Lexical Analyzer
+Type of Instruction Scanned: Inherent
+Type of Instruction Scanned: Inherent
+Test ErrorMessage: 
+generic error at line 1, character 1
+generic error at line 1, character 1
+Test ErrorReporter: 
+first error message at line 1, character 1
+first error message at line 1, character 1
+Test Line Statement
+id[halt] | hex[0]
+id[halt] | hex[0]
+Test Mnemonic
+id[halt],opcode[0]
+id[halt],opcode[0]
+Test Position
+p1[1,1]
+p1[1,1]
+Test SymbolTable
+Opcode: 22
+Opcode: 22
+Test Relative
+Mnemonic: halt | Opcode: 0 | Size: 2 | inRange: false
+Mnemonic: halt | Opcode: 0 | Size: 2 | inRange: false
+Test Inherent
+Mnemonic: halt | Opcode: 0 | Size: 1
+Mnemonic: halt | Opcode: 0 | Size: 1

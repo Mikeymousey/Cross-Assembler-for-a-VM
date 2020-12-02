@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="357b6641-5fc8-48a5-b6d1-c644ae5dcb45" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestRelative.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/AssemblyUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/AssemblyUnit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Digit.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Digit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Directive.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Directive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/ErrorMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/ErrorMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/ErrorReporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/ErrorReporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Immediate.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Immediate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Inherent.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Inherent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Instruction.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Instruction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Label.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Label.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Lexicalanalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Lexicalanalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Linestatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Linestatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Mnemonic.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Mnemonic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Offset.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Offset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Operand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Operand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Relative.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/Relative.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/SourceFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/SourceFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/SymbolTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/assembler/SymbolTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestComment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestComment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestErrorMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestErrorMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestErrorReporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestErrorReporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestLabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestLabel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestLexicalanalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestLexicalanalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestLinestatement.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestLinestatement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestMnemonic.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestMnemonic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestOperand.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestOperand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/TestPosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/aunit.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cross-Assembler for Virtual Machine/src/test/aunit.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1l23SigZmev18qS4JpnC3yUzXbr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunManager" selected="Application.TestPosition">
+    <configuration name="TestOperand" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.TestOperand" />
+      <module name="Cross-Assembler-for-a-VM" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPosition" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.TestPosition" />
+      <module name="Cross-Assembler-for-a-VM" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TestPosition" />
+        <item itemvalue="Application.TestOperand" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="357b6641-5fc8-48a5-b6d1-c644ae5dcb45" name="Default Changelist" comment="" />
+      <created>1606781361213</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606781361213</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="734" y="374" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606792081903">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="734" y="374" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1440@0.0.2560.1440" timestamp="1606792081903" />
+    <state width="1258" height="413" key="GridCell.Tab.0.bottom" timestamp="1606793716277">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1258" height="413" key="GridCell.Tab.0.bottom/0.0.2560.1440@0.0.2560.1440" timestamp="1606793716277" />
+    <state width="1258" height="413" key="GridCell.Tab.0.center" timestamp="1606793716277">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1258" height="413" key="GridCell.Tab.0.center/0.0.2560.1440@0.0.2560.1440" timestamp="1606793716277" />
+    <state width="1258" height="413" key="GridCell.Tab.0.left" timestamp="1606793716277">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1258" height="413" key="GridCell.Tab.0.left/0.0.2560.1440@0.0.2560.1440" timestamp="1606793716277" />
+    <state width="1258" height="413" key="GridCell.Tab.0.right" timestamp="1606793716277">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1258" height="413" key="GridCell.Tab.0.right/0.0.2560.1440@0.0.2560.1440" timestamp="1606793716277" />
+    <state x="781" y="364" key="SettingsEditor" timestamp="1606793608250">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="781" y="364" key="SettingsEditor/0.0.2560.1440@0.0.2560.1440" timestamp="1606793608250" />
+  </component>
+</project>

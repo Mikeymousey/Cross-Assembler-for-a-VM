@@ -7,7 +7,7 @@ ECHO Compiling all TestClasses....
 javac -cp . test/TestNode.java
 javac -cp . test/TestComment.java
 javac -cp . test/TestLabel.java
-REM javac -cp . test/TestParser.java
+javac -cp . test/TestParser.java
 javac -cp . test/TestLexicalanalyzer.java
 javac -cp . test/TestOperand.java
 javac -cp . test/TestErrorMessage.java
@@ -32,7 +32,7 @@ java  -cp . test/TestComment    >>  Tests.txt
 ECHO ...Running TestLabel....
 java  -cp . test/TestLabel    >>  Tests.txt
 ECHO ...Running TestParser....
-REM java  -cp . test/TestParser    >>  Tests.txt
+java  -cp . test/TestParser    >>  Tests.txt
 ECHO ...Running TestOperand....
 java  -cp . test/TestOperand    >>  Tests.txt
 ECHO ...Running TestLexicalanalyzer....

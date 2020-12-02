@@ -34,4 +34,12 @@ public class Relative extends Instruction {
 		rangeLow = l;
 		rangeHigh = h;
 	}
+	
+	@Override public boolean inRange(int n) {
+		if(n < rangeLow || n > rangeHigh) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

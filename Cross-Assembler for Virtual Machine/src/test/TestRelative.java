@@ -24,13 +24,13 @@ public class TestRelative {
         reltest.setOperand(optest);
         reltest.setMnemonic(mnemtest);
         reltest.setSize(2);
-        reltest.setRange(0, 1);
+        reltest.setRange(0,1);
         
 
 
         System.out.print("Test Relative\n");
         System.out.print("Mnemonic: halt | Opcode: 0 | Size: 2 | inRange: false\n");
-        System.out.print("Mnemonic: " + mnemtest.identifier + " | " + "Opcode: " + mnemtest.opcode + " | Size: " + reltest.getSize() + " | inRange: " + reltest.inRange(2) ); System.out.println();
+        System.out.print("Mnemonic: " + mnemtest.identifier + " | " + "Opcode: " + mnemtest.opcode + " | Size: " + reltest.getSize() + " | inRange: " + reltest.inRange(99) ); System.out.println();
      
         
 
