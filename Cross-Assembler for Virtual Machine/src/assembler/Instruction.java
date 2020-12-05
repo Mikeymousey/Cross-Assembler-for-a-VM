@@ -5,6 +5,7 @@ public class Instruction{
 	private Operand operand;
 	private int Size;
 	private int Address;
+	private boolean toResolve;
 	public int getSize() {
 		return Size;
 	}
@@ -20,6 +21,7 @@ public class Instruction{
 	public Instruction() {
 		mnemonic = new Mnemonic();
 		operand = new Operand();
+		toResolve = false;
 	}
 	public Mnemonic getMnemonic() {
 		return mnemonic;
@@ -36,5 +38,17 @@ public class Instruction{
 	
 	public boolean inRange(int n) {
 		return true;
+	}
+	
+	public void flag() {
+		toResolve = true;
+	}
+	
+	public void deflag() {
+		toResolve = false;
+	}
+	
+	public boolean flagged() {
+		return toResolve;
 	}
 }

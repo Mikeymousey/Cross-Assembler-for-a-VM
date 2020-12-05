@@ -259,18 +259,19 @@ public class Lexicalanalyzer
 					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-128, 127);
 					SetLine("brf.i8");
 					return "Relative";*/
-				case "call.i16":
+				case "calls.i16":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
 					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(3);
 					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(-32768, 32767);
-					expected = "none";
-					SetLine("call.i16");
+					expected = "label";
+					SetLine("calls.i16");
 					return "Relative";
 				case "trap":
 					aUnit.asmFile[aUnit.currPos.getLine()].setInstruction(new Relative());
 					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setSize(2);
 					SetLine("trap");
-					expected = "none";
+					((Relative) aUnit.asmFile[aUnit.currPos.getLine()].getInstruction()).setRange(0, 255);
+					expected = "number";
 					return "Relative";
 				default:
 					aUnit.errep.reportError("unrecognized mnemonic", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
@@ -278,8 +279,30 @@ public class Lexicalanalyzer
 				}//end of switch
 				return "?";
 	}//end of Parse method
-	public void scanDirective() {
-		String c;
+	
+	public void Resolve() {//does a second pass to resolve labels
+		aUnit.currPos = new Position(0, 0);
+		for(; aUnit.currPos.getLine() < aUnit.asmFile.length; aUnit.currPos.incLine()) {
+			if(aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().flagged()) {
+				int op = SymbolTable.getOpcode(aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().getOperand().toString());
+				if(op == -1) {
+					aUnit.errep.reportError("Unrecognized label", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+				} else if (aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().inRange(op)) {
+					aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setOperand(new Operand(op));
+				} else {
+					aUnit.errep.reportError("Operand out of range", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+				}
+			}
+		}
+	}
+	
+	public void scanDirective(String s) {
+		String c = s;
+		for(int i = 0; i < s.length(); i++) {
+			if(s.charAt(i) == '\r' || s.charAt(i) == '\n') {
+				aUnit.errep.reportError("unprintable character in string", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
+			}
+		}
 	}
 	public void makeLabel(String token) {
 		if(SymbolTable.getOpcode(token) == -1) {
@@ -291,14 +314,11 @@ public class Lexicalanalyzer
 		}
 	}
 	public void scanLabel(String token) {
-		if(SymbolTable.getOpcode(token) != -1) {
-			scanNumber(SymbolTable.getOpcode(token));
-		} else {
-			aUnit.errep.reportError("Unrecognized label", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
-		}
+		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setOperand(new Label(token));
+		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().flag();
 	}
 	public void scanComment(String comm) {
-		System.out.println("comment recieved: " + comm);
+		//System.out.println("comment recieved: " + comm);
 		aUnit.asmFile[aUnit.currPos.getLine()].setComment(new Comment(comm));
 	}
 	public void scanNumber(String n) {

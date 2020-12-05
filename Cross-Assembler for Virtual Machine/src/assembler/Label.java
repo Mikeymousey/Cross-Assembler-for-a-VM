@@ -11,6 +11,10 @@ public class Label extends Operand {
 		this("");
 	}
 	
+	public String getLabelName() {
+		return identifier;
+	}
+	
 	public String toString() {
 		return identifier;
 	}

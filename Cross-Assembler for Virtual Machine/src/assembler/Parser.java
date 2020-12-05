@@ -14,7 +14,7 @@ public class Parser {
 	
 	public void parseLine(String s) {
 		tokenPos = 0;
-		if (s == null) {
+		if (s == null || s.length() == 0) {
 			System.out.print("null string passed to parser");
 			return;
 		}
@@ -22,6 +22,11 @@ public class Parser {
 		if(s.charAt(0) == '\t') {
 			label = false;
 			String s0 = nextToken(s);
+			if (s0 == null || s0.length() == 0) {
+				aUnit.currPos.incLine();
+				aUnit.currPos.clearChar();
+				return;
+			}
 			type = lex.scanIdentifier(s0);
 			switch(type) {
 			case "Inherent":
@@ -32,6 +37,11 @@ public class Parser {
 				//we know that the operand is immediate data, a number or label
 				String expected = lex.expect(); //important that this is called before nextToken()
 				String t = nextToken(s);
+				if (t == null || t.length() == 0) {
+					aUnit.currPos.incLine();
+					aUnit.currPos.clearChar();
+					return;
+				}
 				switch(expected) {
 				case "number":
 					if(!isLetter(t.charAt(0))) {
@@ -66,6 +76,11 @@ public class Parser {
 				//operand is either an address, offset, or label deal with in sprint 3
 				expected = lex.expect();
 				t = nextToken(s);
+				if (t == null || t.length() == 0) {
+					aUnit.currPos.incLine();
+					aUnit.currPos.clearChar();
+					return;
+				}
 				switch(expected) {
 				case "number":
 					if(isDigit(t.charAt(0)) || (t.charAt(0) == '-' && isDigit(t.charAt(1)))) {
@@ -101,9 +116,16 @@ public class Parser {
 		} else if(isLetter(s.charAt(0))) {
 			label = true;
 			String s0 = nextToken(s);
+			if (s0 == null || s0.length() == 0) {
+				aUnit.currPos.incLine();
+				aUnit.currPos.clearChar();
+				return;
+			}
 			lex.makeLabel(s0);
 		} else if(s.charAt(0) == '.') {
-			
+			aUnit.errep.reportError("directive must have a label", aUnit.currPos.getCharacter(), aUnit.currPos.getLine());
+		} else if(s.charAt(0) == ';') {
+			nextToken(s);
 		} else {
 			aUnit.errep.reportError("expected line to start with tab or label", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
 		}
@@ -113,7 +135,18 @@ public class Parser {
 		}*/
 		for(; aUnit.currPos.getCharacter() < s.length() - 1 && s.charAt(aUnit.currPos.getCharacter()) != ';' && !isSpace(s.charAt(aUnit.currPos.getCharacter())); aUnit.currPos.incChar()) {}
 		if (label) {
-			type = lex.scanIdentifier(nextToken(s));
+			String t1 = nextToken(s);
+			if (t1 == null || t1.length() == 0) {
+				aUnit.currPos.incLine();
+				aUnit.currPos.clearChar();	
+				return;
+			}
+			if (t1.charAt(0) == '.') {
+				String userString = nextToken(s);
+				lex.scanDirective(userString);
+				return;
+			}
+			type = lex.scanIdentifier(t1);
 			switch(type) {
 			case "Inherent":
 				//if inherent there is nothing left to scan
@@ -121,6 +154,11 @@ public class Parser {
 			case "Immediate":
 				String expected = lex.expect(); //important that this is called before nextToken()
 				String t = nextToken(s);
+				if (t == null || t.length() == 0) {
+					aUnit.currPos.incLine();
+					aUnit.currPos.clearChar();
+					return;
+				}
 				switch(expected) {
 				case "number":
 					if(!isLetter(t.charAt(0))) {
@@ -151,9 +189,15 @@ public class Parser {
 					aUnit.errep.reportError("unrealistic expectation", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
 					break;
 				}
+				break;
 			case "Relative":
 				expected = lex.expect();
 				t = nextToken(s);
+				if (t == null || t.length() == 0) {
+					aUnit.currPos.incLine();
+					aUnit.currPos.clearChar();
+					return;
+				}
 				switch(expected) {
 				case "number":
 					if(isDigit(t.charAt(0)) || (t.charAt(0) == '-' && isDigit(t.charAt(1)))) {
@@ -196,7 +240,7 @@ public class Parser {
 		
 	public String nextToken(String s) {
 		int srcBegin = aUnit.currPos.getCharacter();
-		int srcEnd = 0;
+		int srcEnd = s.length() - 1;
 		char[] wordBuf = new char[s.length()];
 		boolean inWord = false;
 		for(;aUnit.currPos.getCharacter() < s.length() - 1; aUnit.currPos.incChar()) {
@@ -218,8 +262,8 @@ public class Parser {
 				break;
 			}
 		}
-		if(srcEnd < srcBegin) {
-			srcEnd = s.length() - 1;
+		if(srcEnd == srcBegin) {
+			return null;
 		}
 		s.getChars(srcBegin, srcEnd + 1, wordBuf, 0);
 		tokenPos++;
