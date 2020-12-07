@@ -6,6 +6,7 @@ public class Instruction{
 	private int Size;
 	private int Address;
 	private boolean toResolve;
+	private boolean directive;
 	public int getSize() {
 		return Size;
 	}
@@ -22,6 +23,7 @@ public class Instruction{
 		mnemonic = new Mnemonic();
 		operand = new Operand();
 		toResolve = false;
+		directive = false;
 	}
 	public Mnemonic getMnemonic() {
 		return mnemonic;
@@ -50,5 +52,13 @@ public class Instruction{
 	
 	public boolean flagged() {
 		return toResolve;
+	}
+	
+	public boolean isDirective() {
+		return directive;
+	}
+	
+	public void setDirective() {
+		directive = true;
 	}
 }

@@ -296,13 +296,18 @@ public class Lexicalanalyzer
 		}
 	}
 	
-	public void scanDirective(String s) {
-		String c = s;
-		for(int i = 0; i < s.length(); i++) {
+	public void scanString(String s) {
+		String c;
+		c = s.substring(1, s.length()-1);
+		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setOperand(new StringOp(c));
+		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setDirective();
+		for(int i = 0; i < c.length(); i++) {
 			if(s.charAt(i) == '\r' || s.charAt(i) == '\n') {
 				aUnit.errep.reportError("unprintable character in string", aUnit.currPos.getLine(), aUnit.currPos.getCharacter());
 			}
 		}
+		aUnit.asmFile[aUnit.currPos.getLine()].getInstruction().setAddress(aUnit.address);
+		aUnit.address += c.length() + 1;
 	}
 	public void makeLabel(String token) {
 		if(SymbolTable.getOpcode(token) == -1) {

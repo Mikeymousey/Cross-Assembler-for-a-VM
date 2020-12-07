@@ -20,8 +20,6 @@ public class AssemblyUnit {
 		Lex = new Lexicalanalyzer(this);
 		parser = new Parser(this, Lex);
 		SourceFile sf = new SourceFile(this, parser);
-		
-		sf.GenerateLstFile();
 	}
 	/*public void readFile(String s) throws IOException 
 	{

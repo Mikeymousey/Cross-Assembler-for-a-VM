@@ -4,11 +4,11 @@ public class Inherent extends Instruction {
 
 	private Mnemonic mnemonic;
 	private Operand operand;
-	private int Size;
+	private int size;
 	public Inherent () {
 		mnemonic = new Mnemonic();
 		operand = new Operand();
-		Size = 1;
+		size = 1;
 	}
 	public Mnemonic getMnemonic() {
 		return mnemonic;
@@ -23,9 +23,9 @@ public class Inherent extends Instruction {
 		this.operand = operand;
 	}
 	public int getSize() {
-		return Size;
+		return size;
 	}
 	public void setSize(int size) {
-		Size = size;
+		this.size = size;
 	}
 }

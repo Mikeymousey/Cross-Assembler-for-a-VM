@@ -19,7 +19,7 @@ public class Parser {
 			return;
 		}
 		char a = s.charAt(aUnit.currPos.getCharacter()); //for debugging purposes, unused in code
-		if(s.charAt(0) == '\t') {
+		if(isSpace(s.charAt(0))) {
 			label = false;
 			String s0 = nextToken(s);
 			if (s0 == null || s0.length() == 0) {
@@ -143,7 +143,9 @@ public class Parser {
 			}
 			if (t1.charAt(0) == '.') {
 				String userString = nextToken(s);
-				lex.scanDirective(userString);
+				lex.scanString(userString);
+				aUnit.currPos.incLine();
+				aUnit.currPos.clearChar();	
 				return;
 			}
 			type = lex.scanIdentifier(t1);

@@ -7,7 +7,7 @@ public class Program {
 
 	public static void main(String[] args) throws IOException 
 	{
-		new AssemblyUnit("Instruction_Test.asm");
+		new AssemblyUnit("TS3.asm");
 	}
 
 }

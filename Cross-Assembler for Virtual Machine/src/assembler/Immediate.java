@@ -5,13 +5,13 @@ public class Immediate extends Instruction {
 	private int rangeLow;
 	private Mnemonic mnemonic;
 	private Operand operand;
-	private int Size;
+	private int size;
 	private int Address;
 	public int getSize() {
-		return Size;
+		return size;
 	}
 	public void setSize(int size) {
-		Size = size;
+		this.size = size;
 	}
 	public int getAddress() {
 		return Address;
@@ -22,6 +22,7 @@ public class Immediate extends Instruction {
 	public Immediate() {
 		mnemonic = new Mnemonic();
 		operand = new Operand();
+		size = 1;
 	}
 	public Mnemonic getMnemonic() {
 		return mnemonic;
